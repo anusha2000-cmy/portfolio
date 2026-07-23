@@ -353,20 +353,23 @@ function About() {
         <SectionHeader eyebrow="About" title="Engineer with a bias toward measurable impact" />
         <div className="space-y-4 text-muted-foreground lg:col-span-2">
           <p>
-            I'm a software engineer with hands-on experience across fintech and
-            enterprise systems, focused on building scalable backend services,
-            secure REST APIs, and cloud-native deployments.
+            I'm a software engineer with experience building scalable backend
+            systems, APIs, and cloud-native applications. I enjoy solving
+            engineering problems related to performance, reliability, and
+            system design, and I've worked on services focused on scalability,
+            automation, and secure integrations.
           </p>
           <p>
-            My strengths are in Java, Spring Boot, Spring WebFlux, distributed
-            systems, cloud deployment, and performance optimization — turning
-            legacy services into reactive systems that measurably improve
-            throughput and latency.
+            Alongside backend development, I also like exploring full stack
+            and AI-powered projects that turn complex ideas into practical
+            products.
           </p>
           <p>
-            Alongside backend work I build AI-powered products and modern full
-            stack applications. I'm currently pursuing my M.S. in Software
-            Engineering at <span className="text-foreground">San Jose State University</span>.
+            I'm currently pursuing my M.S. in Software Engineering at{" "}
+            <span className="text-foreground">San Jose State University</span>{" "}
+            and am especially interested in opportunities where I can
+            contribute to impactful software, continue growing as an engineer,
+            and work on systems at scale.
           </p>
         </div>
       </div>
