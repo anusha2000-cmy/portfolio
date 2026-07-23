@@ -646,6 +646,14 @@ function Education() {
 
 const CERTIFICATIONS = [
   {
+    icon: Sparkles,
+    title: "Generative AI with Large Language Models",
+    issuer: "DeepLearning.AI & AWS (Coursera)",
+    date: "2024",
+    body: "LLM lifecycle, transformer architectures, fine-tuning, RLHF, and deploying generative AI applications.",
+    credentialUrl: "#",
+  },
+  {
     icon: Cloud,
     title: "AWS Certified Cloud Practitioner",
     issuer: "Amazon Web Services",
@@ -655,10 +663,18 @@ const CERTIFICATIONS = [
   },
   {
     icon: Rocket,
-    title: "AWS Solutions Architect — Training",
+    title: "AWS Certified Solutions Architect — Associate (Course)",
     issuer: "Amazon Web Services",
     date: "2024",
-    body: "Completed hands-on training on designing resilient, scalable, and cost-optimized architectures on AWS.",
+    body: "Designing resilient, high-performing, secure, and cost-optimized architectures on AWS.",
+    credentialUrl: "#",
+  },
+  {
+    icon: Code2,
+    title: "Programming, Data Structures & Algorithms using Python",
+    issuer: "NPTEL",
+    date: "2021",
+    body: "Core CS foundations: algorithmic thinking, data structures, complexity analysis, and problem solving in Python.",
     credentialUrl: "#",
   },
 ];
