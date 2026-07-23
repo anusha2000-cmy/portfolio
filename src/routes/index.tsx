@@ -69,13 +69,12 @@ function Portfolio() {
       <Nav />
       <main>
         <Hero />
-        <TechSnapshot />
-        <CurrentlyFocused />
         <About />
         <Education />
+        <Skills />
+        <CurrentlyFocused />
         <Experience />
         <Projects />
-        <Skills />
         <Achievements />
         <Contact />
       </main>
