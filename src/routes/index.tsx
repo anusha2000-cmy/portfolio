@@ -53,7 +53,7 @@ const NAV = [
   { href: "#experience", label: "Experience" },
   { href: "#projects", label: "Projects" },
   { href: "#achievements", label: "Achievements" },
-  { href: "#contact", label: "Contact" },
+  
 ];
 
 const SOCIAL = {
