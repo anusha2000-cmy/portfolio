@@ -75,6 +75,7 @@ function Portfolio() {
         <CurrentlyFocused />
         <Experience />
         <Projects />
+        <Certifications />
         <Achievements />
       </main>
       <Footer />
