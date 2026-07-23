@@ -301,9 +301,9 @@ function TechSnapshot() {
 
 const FOCUS = [
   {
-    icon: Server,
-    title: "Backend systems",
-    body: "Reactive, high-throughput services with Java 17 and Spring WebFlux.",
+    icon: Layers,
+    title: "Full-stack applications",
+    body: "Building end-to-end products with React front-ends and reactive Java services.",
   },
   {
     icon: Cloud,
