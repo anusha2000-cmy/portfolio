@@ -52,8 +52,8 @@ const NAV = [
   { href: "#skills", label: "Skills" },
   { href: "#experience", label: "Experience" },
   { href: "#projects", label: "Projects" },
+  { href: "#certifications", label: "Certifications" },
   { href: "#achievements", label: "Achievements" },
-  
 ];
 
 const SOCIAL = {
@@ -75,6 +75,7 @@ function Portfolio() {
         <CurrentlyFocused />
         <Experience />
         <Projects />
+        <Certifications />
         <Achievements />
       </main>
       <Footer />
@@ -642,6 +643,58 @@ function Education() {
     </section>
   );
 }
+
+const CERTIFICATIONS = [
+  {
+    icon: Cloud,
+    title: "AWS Certified Cloud Practitioner",
+    issuer: "Amazon Web Services",
+    date: "2024",
+    body: "Foundational understanding of AWS Cloud, core services, security, architecture, pricing, and support.",
+    credentialUrl: "#",
+  },
+  {
+    icon: Rocket,
+    title: "AWS Solutions Architect — Training",
+    issuer: "Amazon Web Services",
+    date: "2024",
+    body: "Completed hands-on training on designing resilient, scalable, and cost-optimized architectures on AWS.",
+    credentialUrl: "#",
+  },
+];
+
+function Certifications() {
+  return (
+    <section id="certifications" className="mx-auto max-w-6xl px-6 py-20">
+      <SectionHeader
+        eyebrow="Certifications"
+        title="Credentials & continuous learning"
+        description="Cloud and engineering certifications backing hands-on project work."
+      />
+      <div className="grid gap-4 sm:grid-cols-2">
+        {CERTIFICATIONS.map((c) => (
+          <div
+            key={c.title}
+            className="group rounded-xl border border-border bg-card p-6 transition-colors hover:border-brand/40"
+          >
+            <div className="flex items-start justify-between gap-4">
+              <div className="flex h-11 w-11 items-center justify-center rounded-lg border border-border bg-surface">
+                <c.icon className="h-5 w-5 text-brand" />
+              </div>
+              <span className="rounded-full border border-border bg-surface px-2.5 py-1 text-xs text-muted-foreground">
+                {c.date}
+              </span>
+            </div>
+            <h3 className="mt-5 font-semibold leading-tight">{c.title}</h3>
+            <p className="mt-1 text-sm text-brand">{c.issuer}</p>
+            <p className="mt-3 text-sm text-muted-foreground">{c.body}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+  );
+}
+
 
 const ACHIEVEMENTS = [
   {
