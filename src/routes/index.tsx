@@ -52,8 +52,8 @@ const NAV = [
   { href: "#skills", label: "Skills" },
   { href: "#experience", label: "Experience" },
   { href: "#projects", label: "Projects" },
+  { href: "#certifications", label: "Certifications" },
   { href: "#achievements", label: "Achievements" },
-  
 ];
 
 const SOCIAL = {
