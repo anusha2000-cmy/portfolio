@@ -76,7 +76,6 @@ function Portfolio() {
         <Experience />
         <Projects />
         <Achievements />
-        <Contact />
       </main>
       <Footer />
     </div>
