@@ -186,7 +186,7 @@ function Hero() {
           </p>
           <div className="mt-8 flex flex-wrap gap-3">
             <a
-              href="#contact"
+              href={SOCIAL.email}
               className="inline-flex items-center gap-2 rounded-md bg-primary px-4 py-2.5 text-sm font-medium text-primary-foreground transition-opacity hover:opacity-90"
             >
               Contact Me <ArrowRight className="h-4 w-4" />
