@@ -688,6 +688,14 @@ function Certifications() {
             <h3 className="mt-5 font-semibold leading-tight">{c.title}</h3>
             <p className="mt-1 text-sm text-brand">{c.issuer}</p>
             <p className="mt-3 text-sm text-muted-foreground">{c.body}</p>
+            <a
+              href={c.credentialUrl}
+              target="_blank"
+              rel="noreferrer"
+              className="mt-4 inline-flex items-center gap-1.5 text-sm font-medium text-brand transition-opacity hover:opacity-80"
+            >
+              View credential <ArrowUpRight className="h-4 w-4" />
+            </a>
           </div>
         ))}
       </div>
