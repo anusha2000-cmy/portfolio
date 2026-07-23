@@ -72,10 +72,10 @@ function Portfolio() {
         <TechSnapshot />
         <CurrentlyFocused />
         <About />
+        <Education />
         <Experience />
         <Projects />
         <Skills />
-        <Education />
         <Achievements />
         <Contact />
       </main>
