@@ -48,10 +48,10 @@ export const Route = createFileRoute("/")({
 
 const NAV = [
   { href: "#about", label: "About" },
+  { href: "#education", label: "Education" },
   { href: "#experience", label: "Experience" },
   { href: "#projects", label: "Projects" },
   { href: "#skills", label: "Skills" },
-  { href: "#education", label: "Education" },
   { href: "#achievements", label: "Achievements" },
   { href: "#contact", label: "Contact" },
 ];
@@ -72,10 +72,10 @@ function Portfolio() {
         <TechSnapshot />
         <CurrentlyFocused />
         <About />
+        <Education />
         <Experience />
         <Projects />
         <Skills />
-        <Education />
         <Achievements />
         <Contact />
       </main>
