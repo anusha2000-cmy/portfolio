@@ -27,7 +27,7 @@ import { useEffect, useState } from "react";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Anusha Tulasi — Software Engineer | Backend, Cloud & AI" },
+      { title: "Anusha Tulasi — Software Engineer | Full Stack, Cloud & AI" },
       {
         name: "description",
         content:
@@ -57,9 +57,9 @@ const NAV = [
 ];
 
 const SOCIAL = {
-  github: "https://github.com/",
-  linkedin: "https://linkedin.com/",
-  email: "mailto:anusha.tulasi@example.com",
+  github: "https://github.com/anusha2000-cmy",
+  linkedin: "https://www.linkedin.com/in/anusha-tulasi-1552b3184/",
+  email: "mailto:anusha.tulasi@sjsu.edu",
   resume: "#",
 };
 
@@ -181,29 +181,8 @@ function Hero() {
           <p className="mt-6 max-w-2xl text-base leading-relaxed text-muted-foreground sm:text-lg">
             Software engineer with experience building scalable backend systems,
             REST APIs, cloud-native services, and performance-focused
-            applications using Java, Spring Boot, Kubernetes, GCP, AWS, and
-            React.
+            applications. Currently pursuing my M.S. in Software Engineering at San Jose State University.
           </p>
-          <div className="mt-8 flex flex-wrap gap-3">
-            <a
-              href={SOCIAL.email}
-              className="inline-flex items-center gap-2 rounded-md bg-primary px-4 py-2.5 text-sm font-medium text-primary-foreground transition-opacity hover:opacity-90"
-            >
-              Contact Me <ArrowRight className="h-4 w-4" />
-            </a>
-            <a
-              href="#projects"
-              className="inline-flex items-center gap-2 rounded-md border border-border bg-card px-4 py-2.5 text-sm font-medium transition-colors hover:bg-muted"
-            >
-              View Projects
-            </a>
-            <a
-              href={SOCIAL.resume}
-              className="inline-flex items-center gap-2 rounded-md border border-border bg-card px-4 py-2.5 text-sm font-medium transition-colors hover:bg-muted"
-            >
-              <FileDown className="h-4 w-4" /> Download Resume
-            </a>
-          </div>
           <div className="mt-8 flex items-center gap-4 text-muted-foreground">
             <IconLink href={SOCIAL.github} label="GitHub">
               <Github className="h-5 w-5" />
@@ -302,17 +281,17 @@ const FOCUS = [
   {
     icon: Layers,
     title: "Full-stack applications",
-    body: "Building end-to-end products with React front-ends and reactive Java services.",
+    body: "Building end-to-end products with React front-ends and backend services.",
   },
   {
     icon: Cloud,
-    title: "Cloud-native engineering",
-    body: "Deploying and operating containerized services on GKE with GitOps.",
+    title: "Cloud EngineeringS",
+    body: "Working with containerized services, deployment workflows, and modern cloud platforms.",
   },
   {
     icon: Layers,
-    title: "Scalable APIs",
-    body: "Designing secure REST APIs with sub-10ms latency at ~900 TPS.",
+    title: "Distributed Systems",
+    body: "Exploring scalable system architecture, asynchronous workflows, and reliable service design.Strengthening my understanding of designing maintainable, high-performance systems.",
   },
   {
     icon: Cpu,
@@ -620,7 +599,7 @@ const EDUCATION = [
     degree: "M.S. in Software Engineering",
     location: "San Jose, California",
     period: "Jan 2026 – Dec 2027 (Expected)",
-    gpa: "GPA: 3.7",
+    gpa: "GPA: 4.0",
     extra:
       "Relevant coursework: Data Structures & Algorithms (C++), Database Systems, Operating Systems, Distributed Systems.",
   },
@@ -819,7 +798,7 @@ function Footer() {
     <footer className="border-t border-border">
       <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-3 px-6 py-8 sm:flex-row">
         <p className="mono text-xs text-muted-foreground">
-          © {new Date().getFullYear()} Anusha Tulasi · Built with care.
+          © {new Date().getFullYear()} Anusha Tulasi · Aspiring Software Engineer.
         </p>
         <div className="flex items-center gap-3 text-muted-foreground">
           <IconLink href={SOCIAL.github} label="GitHub">
