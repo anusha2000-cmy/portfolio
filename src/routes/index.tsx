@@ -2,11 +2,11 @@ import { createFileRoute } from "@tanstack/react-router";
 import {
   ArrowRight,
   ArrowUpRight,
+  Award,
   Github,
   Linkedin,
   Mail,
   MapPin,
-  FileDown,
   Cloud,
   Code2,
   Cpu,
@@ -23,6 +23,15 @@ import {
   X,
 } from "lucide-react";
 import { useEffect, useState } from "react";
+
+import {
+  FloatingOrbs,
+  Reveal,
+  TechMarquee,
+  useSequentialReveal,
+} from "@/components/portfolio-visuals";
+import { ThemeToggle } from "@/components/theme-toggle";
+import { cn } from "@/lib/utils";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -60,7 +69,6 @@ const SOCIAL = {
   github: "https://github.com/anusha2000-cmy",
   linkedin: "https://www.linkedin.com/in/anusha-tulasi-1552b3184/",
   email: "mailto:anusha.tulasi@sjsu.edu",
-  resume: "#",
 };
 
 function Portfolio() {
@@ -69,6 +77,7 @@ function Portfolio() {
       <Nav />
       <main>
         <Hero />
+        <TechMarquee items={STACK} />
         <About />
         <Education />
         <Skills />
@@ -114,27 +123,22 @@ function Nav() {
             <a
               key={n.href}
               href={n.href}
-              className="rounded-md px-3 py-1.5 text-sm text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
+              className="rounded-md px-3 py-1.5 text-sm text-muted-foreground transition-all hover:bg-muted hover:text-foreground hover:-translate-y-0.5"
             >
               {n.label}
             </a>
           ))}
         </nav>
-        <div className="hidden md:block">
-          <a
-            href={SOCIAL.resume}
-            className="inline-flex items-center gap-1.5 rounded-md bg-primary px-3 py-1.5 text-sm font-medium text-primary-foreground transition-opacity hover:opacity-90"
+        <div className="flex items-center gap-1">
+          <ThemeToggle />
+          <button
+            onClick={() => setOpen((v) => !v)}
+            className="rounded-md p-2 md:hidden"
+            aria-label="Toggle menu"
           >
-            <FileDown className="h-4 w-4" /> Resume
-          </a>
+            {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+          </button>
         </div>
-        <button
-          onClick={() => setOpen((v) => !v)}
-          className="rounded-md p-2 md:hidden"
-          aria-label="Toggle menu"
-        >
-          {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
-        </button>
       </div>
       {open && (
         <div className="border-t border-border bg-background md:hidden">
@@ -149,12 +153,6 @@ function Nav() {
                 {n.label}
               </a>
             ))}
-            <a
-              href={SOCIAL.resume}
-              className="mt-2 inline-flex items-center gap-1.5 rounded-md bg-primary px-3 py-2 text-sm font-medium text-primary-foreground"
-            >
-              <FileDown className="h-4 w-4" /> Resume
-            </a>
           </div>
         </div>
       )}
@@ -167,14 +165,15 @@ function Hero() {
     <section id="top" className="relative overflow-hidden">
       <div className="pointer-events-none absolute inset-0 grid-bg" />
       <div className="pointer-events-none absolute inset-x-0 top-0 h-[500px] glow" />
+      <FloatingOrbs />
       <div className="relative mx-auto max-w-6xl px-6 pb-24 pt-20 sm:pt-28">
         <div className="animate-fade-up">
           <div className="inline-flex items-center gap-2 rounded-full border border-border bg-card/60 px-3 py-1 text-xs text-muted-foreground backdrop-blur">
-            <span className="h-1.5 w-1.5 rounded-full bg-brand" />
+            <span className="h-1.5 w-1.5 rounded-full bg-brand animate-pulse-soft" />
             Open to Software Engineering opportunities
           </div>
           <h1 className="mt-6 max-w-4xl text-4xl font-bold tracking-tight sm:text-6xl">
-            Anusha Tulasi
+            <span className="text-gradient animate-shimmer">Anusha Tulasi</span>
           </h1>
           <p className="mono mt-3 text-sm text-brand sm:text-base">
             Software Engineer · Backend · Cloud · Distributed Systems · AI
@@ -219,7 +218,7 @@ function IconLink({
       aria-label={label}
       target={href.startsWith("http") ? "_blank" : undefined}
       rel="noreferrer"
-      className="rounded-md p-2 transition-colors hover:bg-muted hover:text-foreground"
+      className="rounded-md p-2 transition-all hover:scale-110 hover:bg-muted hover:text-foreground"
     >
       {children}
     </a>
@@ -239,6 +238,7 @@ function SectionHeader({
     <div className="mb-12 max-w-2xl">
       <div className="mono text-xs uppercase tracking-widest text-brand">{eyebrow}</div>
       <h2 className="mt-2 text-3xl font-bold tracking-tight sm:text-4xl">{title}</h2>
+      <div className="mt-4 h-1 w-16 rounded-full bg-gradient-to-r from-brand to-brand/20" />
       {description && (
         <p className="mt-3 text-muted-foreground">{description}</p>
       )}
@@ -254,29 +254,6 @@ const STACK = [
   { icon: Database, label: "Cassandra · SQL · Kafka" },
   { icon: Sparkles, label: "Gen AI · Multi-Agent Systems" },
 ];
-
-function TechSnapshot() {
-  return (
-    <section className="border-y border-border bg-surface">
-      <div className="mx-auto max-w-6xl px-6 py-10">
-        <div className="mono mb-4 text-xs uppercase tracking-widest text-muted-foreground">
-          Tech Stack Snapshot
-        </div>
-        <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-6">
-          {STACK.map((s) => (
-            <div
-              key={s.label}
-              className="flex items-center gap-2 rounded-lg border border-border bg-card px-3 py-2.5 text-sm"
-            >
-              <s.icon className="h-4 w-4 shrink-0 text-brand" />
-              <span className="truncate">{s.label}</span>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
 
 const FOCUS = [
   {
@@ -304,20 +281,21 @@ const FOCUS = [
 function CurrentlyFocused() {
   return (
     <section className="mx-auto max-w-6xl px-6 py-20">
-      <SectionHeader
-        eyebrow="Currently Focused On"
-        title="What I'm building and studying"
-      />
+      <Reveal>
+        <SectionHeader
+          eyebrow="Currently Focused On"
+          title="What I'm building and studying"
+        />
+      </Reveal>
       <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-        {FOCUS.map((f) => (
-          <div
-            key={f.title}
-            className="group rounded-xl border border-border bg-card p-5 transition-all hover:-translate-y-0.5 hover:border-brand/40 hover:shadow-sm"
-          >
-            <f.icon className="h-5 w-5 text-brand" />
-            <h3 className="mt-4 font-semibold">{f.title}</h3>
-            <p className="mt-1 text-sm text-muted-foreground">{f.body}</p>
-          </div>
+        {FOCUS.map((f, i) => (
+          <Reveal key={f.title} delay={i * 90}>
+            <div className="group h-full rounded-xl border border-border bg-card p-5 transition-all duration-300 hover:-translate-y-1 hover:border-brand/40 hover:shadow-md">
+              <f.icon className="h-5 w-5 text-brand transition-transform duration-300 group-hover:scale-110" />
+              <h3 className="mt-4 font-semibold">{f.title}</h3>
+              <p className="mt-1 text-sm text-muted-foreground">{f.body}</p>
+            </div>
+          </Reveal>
         ))}
       </div>
     </section>
@@ -326,10 +304,16 @@ function CurrentlyFocused() {
 
 function About() {
   return (
-    <section id="about" className="border-t border-border bg-surface">
+    <section id="about" className="overflow-hidden border-t border-border bg-surface">
       <div className="mx-auto grid max-w-6xl gap-10 px-6 py-20 lg:grid-cols-3">
-        <SectionHeader eyebrow="About" title="Engineer with a bias toward measurable impact" />
-        <div className="space-y-4 text-muted-foreground lg:col-span-2">
+        <Reveal from="left">
+          <SectionHeader eyebrow="About" title="Engineer with a bias toward measurable impact" />
+        </Reveal>
+        <Reveal
+          from="right"
+          className="space-y-4 text-muted-foreground lg:col-span-2"
+          delay={120}
+        >
           <p>
             I'm a software engineer with experience building scalable backend
             systems, APIs, and cloud-native applications. I enjoy solving
@@ -349,7 +333,7 @@ function About() {
             contribute to impactful software, continue growing as an engineer,
             and work on systems at scale.
           </p>
-        </div>
+        </Reveal>
       </div>
     </section>
   );
@@ -376,7 +360,7 @@ const EXPERIENCE = [
     role: "Programmer Analyst",
     company: "Cognizant Technology Solutions",
     location: "Hyderabad, India",
-    period: "Mar 2021 – Sep 2023",
+    period: "Aug 2021 – Sep 2023",
     bullets: [
       "Developed and maintained REST APIs; improved performance by 20% using asynchronous processing.",
       "Implemented CRON jobs and Bash scripts for workflow automation and reporting.",
@@ -391,7 +375,7 @@ const EXPERIENCE = [
     role: "Intern",
     company: "Software Engineering Internship",
     location: "",
-    period: "",
+    period: "Mar 2021 – July 2023",
     bullets: [
       "Developed a product microservice for an e-commerce platform supporting dynamic product filtering.",
       "Integrated Apache Kafka for real-time transaction logs.",
@@ -403,51 +387,67 @@ const EXPERIENCE = [
 ];
 
 function Experience() {
+  const { ref, isVisible } = useSequentialReveal<HTMLOListElement>(
+    EXPERIENCE.length,
+    500,
+  );
+
   return (
     <section id="experience" className="mx-auto max-w-6xl px-6 py-20">
-      <SectionHeader
-        eyebrow="Experience"
-        title="Backend, cloud, and platform work"
-      />
-      <ol className="relative space-y-8 border-l border-border pl-6">
+      <Reveal>
+        <SectionHeader
+          eyebrow="Experience"
+          title="Backend, cloud, and platform work"
+        />
+      </Reveal>
+      <ol
+        ref={ref}
+        className="relative space-y-8 border-l border-border pl-6"
+      >
         {EXPERIENCE.map((e, i) => (
-          <li key={i} className="relative">
-            <span className="absolute -left-[31px] top-1.5 grid h-6 w-6 place-items-center rounded-full border border-border bg-background">
+          <li
+            key={i}
+            className={cn(
+              "sequential-item relative",
+              isVisible(i) ? "sequential-item-visible" : "sequential-item-hidden",
+            )}
+          >
+            <span className="absolute -left-[31px] top-1.5 grid h-6 w-6 place-items-center rounded-full border border-border bg-background ring-4 ring-background">
               <Briefcase className="h-3 w-3 text-brand" />
             </span>
-            <div className="rounded-xl border border-border bg-card p-6 transition-colors hover:border-brand/40">
-              <div className="flex flex-wrap items-baseline justify-between gap-2">
-                <div>
-                  <h3 className="text-lg font-semibold">{e.role}</h3>
-                  <p className="text-sm text-muted-foreground">
-                    {e.company}
-                    {e.location && <> · {e.location}</>}
-                  </p>
-                </div>
-                {e.period && (
-                  <span className="mono text-xs text-muted-foreground">
-                    {e.period}
-                  </span>
-                )}
+            <div className="rounded-xl border border-border bg-card p-6 transition-all duration-300 hover:-translate-y-0.5 hover:border-brand/40 hover:shadow-md">
+            <div className="flex flex-wrap items-baseline justify-between gap-2">
+              <div>
+                <h3 className="text-lg font-semibold">{e.role}</h3>
+                <p className="text-sm text-muted-foreground">
+                  {e.company}
+                  {e.location && <> · {e.location}</>}
+                </p>
               </div>
-              <ul className="mt-4 space-y-2 text-sm text-muted-foreground">
-                {e.bullets.map((b, j) => (
-                  <li key={j} className="flex gap-2">
-                    <span className="mt-2 h-1 w-1 shrink-0 rounded-full bg-brand" />
-                    <span>{b}</span>
-                  </li>
-                ))}
-              </ul>
-              <div className="mt-4 flex flex-wrap gap-1.5">
-                {e.tags.map((t) => (
-                  <span
-                    key={t}
-                    className="mono rounded-md border border-border bg-surface-2 px-2 py-0.5 text-[11px] text-muted-foreground"
-                  >
-                    {t}
-                  </span>
-                ))}
-              </div>
+              {e.period && (
+                <span className="mono text-xs text-muted-foreground">
+                  {e.period}
+                </span>
+              )}
+            </div>
+            <ul className="mt-4 space-y-2 text-sm text-muted-foreground">
+              {e.bullets.map((b, j) => (
+                <li key={j} className="flex gap-2">
+                  <span className="mt-2 h-1 w-1 shrink-0 rounded-full bg-brand" />
+                  <span>{b}</span>
+                </li>
+              ))}
+            </ul>
+            <div className="mt-4 flex flex-wrap gap-1.5">
+              {e.tags.map((t) => (
+                <span
+                  key={t}
+                  className="mono rounded-md border border-border bg-surface-2 px-2 py-0.5 text-[11px] text-muted-foreground"
+                >
+                  {t}
+                </span>
+              ))}
+            </div>
             </div>
           </li>
         ))}
@@ -457,45 +457,54 @@ function Experience() {
 }
 
 const PROJECTS = [
-  {
-    name: "Aetherius",
-    tagline: "Multi-Agent AI System",
-    body: "Self-orchestrating multi-agent system built with Google Agents SDK and Antigravity. Processes real-time crisis data and generates optimized resource allocation strategies.",
-    tech: ["Google Agents SDK", "Antigravity", "LLMs", "Python"],
-    href: "#",
-  },
-  {
-    name: "SemesterOS",
-    tagline: "AI-powered Academic Planner",
-    body: "Converts course syllabi into structured semester roadmaps and weekly study plans using automated task decomposition.",
-    tech: ["Gen AI", "Python", "LLMs"],
-    href: "#",
-  },
-  {
-    name: "Ecommerce App",
-    tagline: "React shopping experience",
-    body: "Shopping application UI with real-time product search and cart management, using hooks and React Router for efficient state and navigation.",
-    tech: ["React", "React Router", "Hooks"],
-    href: "#",
-  },
+    {
+      name: "Aetherius",
+      tagline: "Multi-Agent AI System",
+      body: "Self-orchestrating multi-agent system built with Google Agents SDK and Antigravity. Processes real-time crisis data and generates optimized resource allocation strategies.",
+      tech: ["Google Agents SDK", "Antigravity", "LLMs", "Python"],
+      href: "https://github.com/anusha2000-cmy/Aetherius",
+    },
+    {
+      name: "SemesterOS",
+      tagline: "AI-powered Academic Planner",
+      body: "Converts course syllabi into structured semester roadmaps and weekly study plans using automated task decomposition.",
+      tech: ["Gen AI", "Python", "LLMs"],
+      href: "https://github.com/anusha2000-cmy/SemesterOS",
+    },
+    {
+      name: "Ecommerce App",
+      tagline: "React shopping experience",
+      body: "Shopping application UI with real-time product search and cart management, using hooks and React Router for efficient state and navigation.",
+      tech: ["React", "React Router", "Hooks"],
+      href: "https://github.com/anusha2000-cmy/shopping-app-react",
+    },
+    {
+      name: "Voice Event Registration",
+      tagline: "Voice-assisted form experience",
+      body: "Voice-assisted event registration built with React and VocalBridge. Users can complete the form through voice input or manual typing, with both interactions staying seamlessly in sync.",
+      tech: ["React", "VocalBridge", "Voice UI"],
+      href: "https://github.com/anusha2000-cmy/voice-event-registration",
+    },
 ];
 
 function Projects() {
   return (
     <section id="projects" className="border-t border-border bg-surface">
       <div className="mx-auto max-w-6xl px-6 py-20">
-        <SectionHeader
-          eyebrow="Projects"
-          title="Selected work"
-          description="A mix of backend, distributed systems, and AI-focused projects."
-        />
-        <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
-          {PROJECTS.map((p) => (
-            <a
-              key={p.name}
-              href={p.href}
-              className="group flex flex-col rounded-xl border border-border bg-card p-6 transition-all hover:-translate-y-0.5 hover:border-brand/40 hover:shadow-md"
-            >
+        <Reveal>
+          <SectionHeader
+            eyebrow="Projects"
+            title="Selected work"
+            description="A mix of full-stack, distributed systems, and AI-focused projects."
+          />
+        </Reveal>
+        <div className="grid gap-5 md:grid-cols-2">
+          {PROJECTS.map((p, i) => (
+            <Reveal key={p.name} delay={i * 90}>
+              <a
+                href={p.href}
+                className="group flex h-full flex-col rounded-xl border border-border bg-card p-6 transition-all duration-300 hover:-translate-y-1 hover:border-brand/40 hover:shadow-lg"
+              >
               <div className="flex items-start justify-between">
                 <div>
                   <div className="mono text-xs uppercase tracking-widest text-brand">
@@ -516,7 +525,8 @@ function Projects() {
                   </span>
                 ))}
               </div>
-            </a>
+              </a>
+            </Reveal>
           ))}
         </div>
       </div>
@@ -569,10 +579,13 @@ const SKILL_GROUPS = [
 function Skills() {
   return (
     <section id="skills" className="mx-auto max-w-6xl px-6 py-20">
-      <SectionHeader eyebrow="Skills" title="Technical toolkit" />
+      <Reveal>
+        <SectionHeader eyebrow="Skills" title="Technical toolkit" />
+      </Reveal>
       <div className="grid gap-5 lg:grid-cols-3">
-        {SKILL_GROUPS.map((g) => (
-          <div key={g.title} className="rounded-xl border border-border bg-card p-6">
+        {SKILL_GROUPS.map((g, i) => (
+          <Reveal key={g.title} delay={i * 90}>
+            <div className="h-full rounded-xl border border-border bg-card p-6 transition-all duration-300 hover:-translate-y-1 hover:border-brand/40 hover:shadow-md">
             <div className="flex items-center gap-2">
               <g.icon className="h-4 w-4 text-brand" />
               <h3 className="font-semibold">{g.title}</h3>
@@ -587,7 +600,8 @@ function Skills() {
                 </span>
               ))}
             </div>
-          </div>
+            </div>
+          </Reveal>
         ))}
       </div>
     </section>
@@ -607,7 +621,7 @@ const EDUCATION = [
   {
     school: "JNTUA College of Engineering",
     degree: "Bachelor's Degree",
-    location: "Andhra Pradesh, India",
+    location: "India",
     period: "2017 – 2021",
     gpa: "GPA: 3.95 · Gold Medalist",
     extra: "",
@@ -618,10 +632,13 @@ function Education() {
   return (
     <section id="education" className="border-t border-border bg-surface">
       <div className="mx-auto max-w-6xl px-6 py-20">
-        <SectionHeader eyebrow="Education" title="Academic background" />
+        <Reveal>
+          <SectionHeader eyebrow="Education" title="Academic background" />
+        </Reveal>
         <div className="grid gap-5 md:grid-cols-2">
-          {EDUCATION.map((e) => (
-            <div key={e.school} className="rounded-xl border border-border bg-card p-6">
+          {EDUCATION.map((e, i) => (
+            <Reveal key={e.school} delay={i * 100}>
+              <div className="h-full rounded-xl border border-border bg-card p-6 transition-all duration-300 hover:-translate-y-1 hover:border-brand/40 hover:shadow-md">
               <div className="flex items-start gap-3">
                 <GraduationCap className="h-5 w-5 shrink-0 text-brand" />
                 <div className="min-w-0">
@@ -636,7 +653,8 @@ function Education() {
                   )}
                 </div>
               </div>
-            </div>
+              </div>
+            </Reveal>
           ))}
         </div>
       </div>
@@ -650,8 +668,8 @@ const CERTIFICATIONS = [
     title: "Generative AI with Large Language Models",
     issuer: "DeepLearning.AI & AWS (Coursera)",
     date: "2024",
-    body: "LLM lifecycle, transformer architectures, fine-tuning, RLHF, and deploying generative AI applications.",
-    credentialUrl: "#",
+    body: "LLM lifecycle, transformer architectures, fine-tuning, RLHF, and evaluating generative AI applications.",
+    credentialUrl: "https://drive.google.com/file/d/1-FPN3ubjCwdmYbTHBkFiekrTSta2DLgm/view",
   },
   {
     icon: Cloud,
@@ -659,7 +677,7 @@ const CERTIFICATIONS = [
     issuer: "Amazon Web Services",
     date: "2024",
     body: "Foundational understanding of AWS Cloud, core services, security, architecture, pricing, and support.",
-    credentialUrl: "#",
+    credentialUrl: "https://www.credly.com/badges/896c55c6-cad9-4652-b2a4-63945708de05?source=linked_in_profile",
   },
   {
     icon: Rocket,
@@ -667,7 +685,7 @@ const CERTIFICATIONS = [
     issuer: "Amazon Web Services",
     date: "2024",
     body: "Designing resilient, high-performing, secure, and cost-optimized architectures on AWS.",
-    credentialUrl: "#",
+    credentialUrl: "https://drive.google.com/file/d/1JwCDYryu5gtyn4OOD9I4Z0VyZhKzVxLN/view",
   },
   {
     icon: Code2,
@@ -675,24 +693,24 @@ const CERTIFICATIONS = [
     issuer: "NPTEL",
     date: "2021",
     body: "Core CS foundations: algorithmic thinking, data structures, complexity analysis, and problem solving in Python.",
-    credentialUrl: "#",
+    credentialUrl: "https://drive.google.com/file/d/1OVx2uaW5xt7BtKkOXmeOEpbRwt1oV4CL/view",
   },
 ];
 
 function Certifications() {
   return (
     <section id="certifications" className="mx-auto max-w-6xl px-6 py-20">
-      <SectionHeader
-        eyebrow="Certifications"
-        title="Credentials & continuous learning"
-        description="Cloud and engineering certifications backing hands-on project work."
-      />
+      <Reveal>
+        <SectionHeader
+          eyebrow="Certifications"
+          title="Credentials & continuous learning"
+          description="Cloud and engineering certifications backing hands-on project work."
+        />
+      </Reveal>
       <div className="grid gap-4 sm:grid-cols-2">
-        {CERTIFICATIONS.map((c) => (
-          <div
-            key={c.title}
-            className="group rounded-xl border border-border bg-card p-6 transition-colors hover:border-brand/40"
-          >
+        {CERTIFICATIONS.map((c, i) => (
+          <Reveal key={c.title} delay={i * 80}>
+            <div className="group h-full rounded-xl border border-border bg-card p-6 transition-all duration-300 hover:-translate-y-1 hover:border-brand/40 hover:shadow-md">
             <div className="flex items-start justify-between gap-4">
               <div className="flex h-11 w-11 items-center justify-center rounded-lg border border-border bg-surface">
                 <c.icon className="h-5 w-5 text-brand" />
@@ -712,7 +730,8 @@ function Certifications() {
             >
               View credential <ArrowUpRight className="h-4 w-4" />
             </a>
-          </div>
+            </div>
+          </Reveal>
         ))}
       </div>
     </section>
@@ -723,18 +742,13 @@ function Certifications() {
 const ACHIEVEMENTS = [
   {
     icon: Trophy,
+    title: "Gold Medalist",
+    body: "Awarded Gold Medalist honors for academic excellence during undergraduate studies at JNTUA College of Engineering.",
+  },
+  {
+    icon: Award,
     title: "Ownership Recognition",
     body: "Recognized by management for ownership of key modules and contributions to design decisions.",
-  },
-  {
-    icon: Cloud,
-    title: "AWS Certified Cloud Practitioner",
-    body: "Certified on AWS foundational cloud concepts and services.",
-  },
-  {
-    icon: Rocket,
-    title: "AWS Solutions Architect Training",
-    body: "Completed AWS Solutions Architect training program.",
   },
   {
     icon: Sparkles,
@@ -745,19 +759,28 @@ const ACHIEVEMENTS = [
 
 function Achievements() {
   return (
-    <section id="achievements" className="mx-auto max-w-6xl px-6 py-20">
-      <SectionHeader eyebrow="Achievements" title="Recognitions & certifications" />
-      <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-        {ACHIEVEMENTS.map((a) => (
-          <div
-            key={a.title}
-            className="rounded-xl border border-border bg-card p-5 transition-colors hover:border-brand/40"
-          >
-            <a.icon className="h-5 w-5 text-brand" />
-            <h3 className="mt-4 font-semibold">{a.title}</h3>
-            <p className="mt-1 text-sm text-muted-foreground">{a.body}</p>
-          </div>
-        ))}
+    <section id="achievements" className="border-t border-border bg-surface">
+      <div className="mx-auto max-w-6xl px-6 py-20">
+        <Reveal>
+          <SectionHeader
+            eyebrow="Achievements"
+            title="Honors & recognition"
+            description="Awards and milestones from academics, work, and hackathons."
+          />
+        </Reveal>
+        <div className="grid gap-5 md:grid-cols-1">
+          {ACHIEVEMENTS.map((a, i) => (
+            <Reveal key={a.title} delay={i * 90}>
+              <div className="flex h-full flex-col rounded-xl border border-border bg-card p-6 transition-all duration-300 hover:-translate-y-1 hover:border-brand/40 hover:shadow-md">
+                <div className="flex h-11 w-11 items-center justify-center rounded-lg border border-border bg-surface">
+                  <a.icon className="h-5 w-5 text-brand" />
+                </div>
+                <h3 className="mt-5 font-semibold leading-tight">{a.title}</h3>
+                <p className="mt-2 flex-1 text-sm text-muted-foreground">{a.body}</p>
+              </div>
+            </Reveal>
+          ))}
+        </div>
       </div>
     </section>
   );
