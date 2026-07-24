@@ -614,7 +614,6 @@ const EDUCATION = [
     degree: "M.S. in Software Engineering",
     location: "San Jose, California",
     period: "Jan 2026 – Dec 2027 (Expected)",
-    gpa: "GPA: 4.0",
     extra:
       "Relevant coursework: Data Structures & Algorithms (C++), Database Systems, Operating Systems, Distributed Systems.",
   },
@@ -623,7 +622,6 @@ const EDUCATION = [
     degree: "Bachelor's Degree",
     location: "India",
     period: "2017 – 2021",
-    gpa: "GPA: 3.95 · Gold Medalist",
     extra: "",
   },
 ];
@@ -647,7 +645,6 @@ function Education() {
                     {e.school} · {e.location}
                   </p>
                   <p className="mono mt-2 text-xs text-muted-foreground">{e.period}</p>
-                  <p className="mono mt-1 text-xs text-brand">{e.gpa}</p>
                   {e.extra && (
                     <p className="mt-3 text-sm text-muted-foreground">{e.extra}</p>
                   )}
