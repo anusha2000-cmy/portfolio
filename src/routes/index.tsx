@@ -263,7 +263,7 @@ const FOCUS = [
   },
   {
     icon: Cloud,
-    title: "Cloud EngineeringS",
+    title: "Cloud Engineering",
     body: "Working with containerized services, deployment workflows, and modern cloud platforms.",
   },
   {
