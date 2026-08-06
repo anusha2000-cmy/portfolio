@@ -615,7 +615,7 @@ const EDUCATION = [
     location: "San Jose, California",
     period: "Jan 2026 – Dec 2027 (Expected)",
     extra:
-      "Relevant coursework: Data Structures & Algorithms (C++), Database Systems, Operating Systems, Distributed Systems.",
+      "Relevant coursework: Data Structures & Algorithms (C++), Database Systems, Operating Systems, Distributed Systems, AI/ML.",
   },
   {
     school: "JNTUA College of Engineering",
