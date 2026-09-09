@@ -467,7 +467,7 @@ const PROJECTS = [
     {
       name: "SemesterOS",
       tagline: "AI-powered Academic Planner",
-      body: "Converts course syllabi into structured semester roadmaps and weekly study plans using automated task decomposition.",
+      body: "Converts course syllabi into structured semester roadmaps and weekly study plans using prompt engineering.",
       tech: ["Gen AI", "Python", "LLMs"],
       href: "https://github.com/anusha2000-cmy/SemesterOS",
     },
