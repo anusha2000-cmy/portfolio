@@ -472,12 +472,12 @@ const PROJECTS = [
       href: "https://github.com/anusha2000-cmy/SemesterOS",
     },
     {
-      name: "Ecommerce App",
-      tagline: "React shopping experience",
-      body: "Shopping application UI with real-time product search and cart management, using hooks and React Router for efficient state and navigation.",
-      tech: ["React", "React Router", "Hooks"],
-      href: "https://github.com/anusha2000-cmy/shopping-app-react",
-    },
+      name: "AQI Alert Stream",
+      tagline: "Live air quality dashboard",
+      body: "Real-time AQI monitoring MVP with a FastAPI WebSocket backend and React frontend. Geocodes any city, streams live readings, and surfaces alerts on category changes and EPA threshold crossings.",
+      tech: ["React", "TypeScript", "Python", "FastAPI", "WebSocket"],
+      href: "https://github.com/anusha2000-cmy/aqi-alert-stream",
+},
     {
       name: "Voice Event Registration",
       tagline: "Voice-assisted form experience",
