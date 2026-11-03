@@ -7,6 +7,7 @@ import {
   Linkedin,
   Mail,
   MapPin,
+  Phone,
   Cloud,
   Code2,
   Cpu,
@@ -40,7 +41,7 @@ export const Route = createFileRoute("/")({
       {
         name: "description",
         content:
-          "Software Engineer with experience in Java, Spring Boot, microservices, Kubernetes, GCP/AWS, distributed systems, and AI-powered projects. Open to Software Engineer, Backend, Full Stack, and Cloud roles.",
+          "Software Engineer with experience in Java, Spring Boot, microservices, Kubernetes, GCP/AWS, distributed systems, and AI/ML projects in PyTorch, uncertainty quantification, and multi-agent LLM systems. Open to Software Engineer, AI/ML, Backend, Full Stack, and Cloud roles.",
       },
       { property: "og:title", content: "Anusha Tulasi — Software Engineer" },
       {
@@ -63,6 +64,7 @@ const NAV = [
   { href: "#projects", label: "Projects" },
   { href: "#certifications", label: "Certifications" },
   { href: "#achievements", label: "Achievements" },
+  { href: "#contact", label: "Contact" },
 ];
 
 const SOCIAL = {
@@ -70,6 +72,12 @@ const SOCIAL = {
   linkedin: "https://www.linkedin.com/in/anusha-tulasi-1552b3184/",
   email: "mailto:anusha.tulasi@sjsu.edu",
 };
+
+const CONTACT_INFO = [
+  { icon: Mail, label: "Email", value: "anusha.tulasi@sjsu.edu", href: SOCIAL.email },
+  { icon: Phone, label: "Phone", value: "+1 (669) 214-0710", href: "tel:+16692140710" },
+  { icon: MapPin, label: "Location", value: "San Jose, California", href: undefined },
+];
 
 function Portfolio() {
   return (
@@ -86,6 +94,7 @@ function Portfolio() {
         <Projects />
         <Certifications />
         <Achievements />
+        <Contact />
       </main>
       <Footer />
     </div>
@@ -170,7 +179,7 @@ function Hero() {
         <div className="animate-fade-up">
           <div className="inline-flex items-center gap-2 rounded-full border border-border bg-card/60 px-3 py-1 text-xs text-muted-foreground backdrop-blur">
             <span className="h-1.5 w-1.5 rounded-full bg-brand animate-pulse-soft" />
-            Open to Software Engineering opportunities
+            Open to AI/ML and Software Engineering roles
           </div>
           <h1 className="mt-6 max-w-4xl text-4xl font-bold tracking-tight sm:text-6xl">
             <span className="text-gradient animate-shimmer">Anusha Tulasi</span>
@@ -181,7 +190,9 @@ function Hero() {
           <p className="mt-6 max-w-2xl text-base leading-relaxed text-muted-foreground sm:text-lg">
             Software engineer with experience building scalable backend systems,
             REST APIs, cloud-native services, and performance-focused
-            applications. Currently pursuing my M.S. in Software Engineering at San Jose State University.
+            applications. Currently pursuing my M.S. in Software Engineering at San Jose State University,
+            working on deep learning audio classification, uncertainty
+            quantification, and agentic AI systems.
           </p>
           <div className="mt-8 flex items-center gap-4 text-muted-foreground">
             <IconLink href={SOCIAL.github} label="GitHub">
@@ -322,9 +333,13 @@ function About() {
             automation, and secure integrations.
           </p>
           <p>
-            Alongside backend development, I also like exploring full stack
-            and AI-powered projects that turn complex ideas into practical
-            products.
+            Alongside backend development, I'm increasingly focused on AI and
+            machine learning. I'm building a PyTorch audio-classification
+            pipeline for smart-car safety sounds, evaluating uncertainty
+            quantification methods so models can flag when they shouldn't be
+            trusted, and creating multi-agent LLM systems with the Google
+            Agents SDK. I'm especially drawn to the engineering side of AI:
+            making models reliable, efficient, and ready for production.
           </p>
           <p>
             I'm currently pursuing my M.S. in Software Engineering at{" "}
@@ -341,6 +356,17 @@ function About() {
 
 const EXPERIENCE = [
   {
+    role: "Instructional Student Assistant",
+    company: "San Jose State University",
+    location: "San Jose, CA",
+    period: "Aug 2026 – Present",
+    bullets: [
+      "Grade C++ and C programming assignments using smoke and final tests.",
+      "Answer student questions on programming concepts, debugging, and implementation.",
+    ],
+    tags: ["C++", "C", "Testing"],
+  },
+  {
     role: "Software Engineer II",
     company: "Candescent (Formerly NCR Voyix)",
     location: "Hyderabad, India",
@@ -349,12 +375,13 @@ const EXPERIENCE = [
       "Led reengineering of legacy C++ systems to Java 17 and Spring WebFlux, improving throughput by 50%.",
       "Scaled services to support ~900 TPS per service with sub-10ms latency.",
       "Designed secure REST APIs for digital banking features: account details, transactions, and Zelle transfers.",
-      "Worked with DPoP-based authentication and integrations across multiple core banking systems.",
+      "Implemented JWT and DPoP-based authentication with integrations across multiple core banking systems.",
+      "Used AI-assisted development with GitHub Copilot to raise test coverage to 95%, troubleshoot bugs and security vulnerabilities, and create QA test plans.",
       "Optimized API performance using JMeter and automated Postman regression testing via Jenkins.",
       "Deployed and managed services on Kubernetes (GKE); automated CI/CD with GitHub Actions, Jenkins, and ArgoCD.",
       "Integrated security & compliance tooling: JFrog, Polaris, and WhiteSource.",
     ],
-    tags: ["Java 17", "Spring WebFlux", "GKE", "ArgoCD", "Jenkins", "REST"],
+    tags: ["Java 17", "Spring WebFlux", "GKE", "ArgoCD", "Jenkins", "REST", "JWT", "GitHub Copilot"],
   },
   {
     role: "Programmer Analyst",
@@ -456,35 +483,43 @@ function Experience() {
   );
 }
 
-const PROJECTS = [
-    {
-      name: "Aetherius",
-      tagline: "Multi-Agent AI System",
-      body: "Self-orchestrating multi-agent system built with Google Agents SDK and Antigravity. Processes real-time crisis data and generates optimized resource allocation strategies.",
-      tech: ["Google Agents SDK", "Antigravity", "LLMs", "Python"],
-      href: "https://github.com/anusha2000-cmy/Aetherius",
-    },
-    {
-      name: "SemesterOS",
-      tagline: "AI-powered Academic Planner",
-      body: "Converts course syllabi into structured semester roadmaps and weekly study plans using prompt engineering.",
-      tech: ["Gen AI", "Python", "LLMs"],
-      href: "https://github.com/anusha2000-cmy/SemesterOS",
-    },
-    {
-      name: "AQI Alert Stream",
-      tagline: "Live air quality dashboard",
-      body: "Real-time AQI monitoring MVP with a FastAPI WebSocket backend and React frontend. Geocodes any city, streams live readings, and surfaces alerts on category changes and EPA threshold crossings.",
-      tech: ["React", "TypeScript", "Python", "FastAPI", "WebSocket"],
-      href: "https://github.com/anusha2000-cmy/aqi-alert-stream",
-},
-    {
-      name: "Voice Event Registration",
-      tagline: "Voice-assisted form experience",
-      body: "Voice-assisted event registration built with React and VocalBridge. Users can complete the form through voice input or manual typing, with both interactions staying seamlessly in sync.",
-      tech: ["React", "VocalBridge", "Voice UI"],
-      href: "https://github.com/anusha2000-cmy/voice-event-registration",
-    },
+type Project = {
+  name: string;
+  tagline: string;
+  body: string;
+  tech: string[];
+  href?: string;
+};
+
+const PROJECTS: Project[] = [
+  {
+    name: "Resource-Efficient Uncertainty Quantification",
+    tagline: "QUTE · Ongoing research",
+    body: "Evaluating a QUTE-style single-pass ensemble that estimates prediction uncertainty without the compute cost of a full deep ensemble, benchmarked on MNIST and 15 MNIST-C corruption types to detect model degradation under noisy or corrupted inputs. Building softmax-confidence, MC Dropout, and deep ensemble baselines in PyTorch and owning the evaluation suite: ECE (15 equal-mass bins), Brier score, NLL, and AUPRC.",
+    tech: ["Python", "PyTorch", "MNIST / MNIST-C", "MC Dropout", "Deep Ensembles", "Uncertainty Quantification"],
+    href: "https://github.com/cmpe257-qute-sjsu/qute-uncertainty-mnistc",
+  },
+  {
+    name: "Intelligent Cloud Platform for Smart Cars",
+    tagline: "San Jose State University · Ongoing",
+    body: "Developing a PyTorch/librosa audio-classification pipeline that detects safety- and security-related vehicle sounds, with leakage-safe evaluation and class balancing to keep metrics reliable on imbalanced data, plus confidence-based anomaly detection that flags uncertain predictions instead of misclassifying them. Contributing to an AWS EC2-deployed surveillance platform with alert monitoring, IoT device management, system databases and role-based access for car owners, IoT teams and cloud staff.",
+    tech: ["Python", "PyTorch", "librosa", "AWS EC2", "IoT", "RBAC"],
+    href: "https://github.com/anushatulasi-06/intelligent_cloud_platform_for_smart_cars",
+  },
+  {
+    name: "Aetherius",
+    tagline: "Multi-Agent AI System",
+    body: "Self-orchestrating multi-agent system built with Google Agents SDK and Antigravity. Processes real-time crisis data and generates optimized resource allocation strategies.",
+    tech: ["Google Agents SDK", "Antigravity", "LLM Multi-Agent Orchestration", "Python"],
+    href: "https://github.com/anusha2000-cmy/Aetherius",
+  },
+  {
+    name: "AQI Alert Stream",
+    tagline: "Real-time air quality monitoring",
+    body: "Real-time air quality monitoring site with a FastAPI backend (async polling, geocoding, WebSocket streaming) and a React UI for multi-city AQI tracking, reading history and live category alerts.",
+    tech: ["Python", "FastAPI", "WebSockets", "Async I/O", "Geocoding API", "React", "JavaScript"],
+    href: "https://github.com/anusha2000-cmy/aqi-alert-stream",
+  },
 ];
 
 function Projects() {
@@ -503,6 +538,8 @@ function Projects() {
             <Reveal key={p.name} delay={i * 90}>
               <a
                 href={p.href}
+                target={p.href ? "_blank" : undefined}
+                rel={p.href ? "noreferrer" : undefined}
                 className="group flex h-full flex-col rounded-xl border border-border bg-card p-6 transition-all duration-300 hover:-translate-y-1 hover:border-brand/40 hover:shadow-lg"
               >
               <div className="flex items-start justify-between">
@@ -512,7 +549,7 @@ function Projects() {
                   </div>
                   <h3 className="mt-1 text-lg font-semibold">{p.name}</h3>
                 </div>
-                <ArrowUpRight className="h-4 w-4 text-muted-foreground transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-brand" />
+                {p.href && <ArrowUpRight className="h-4 w-4 text-muted-foreground transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-brand" />}
               </div>
               <p className="mt-3 flex-1 text-sm text-muted-foreground">{p.body}</p>
               <div className="mt-5 flex flex-wrap gap-1.5">
@@ -550,10 +587,31 @@ const SKILL_GROUPS = [
       "JUnit",
       "Kafka",
       "Cassandra",
+      "FastAPI",
+      "REST APIs",
+      "PostgreSQL",
+      "MySQL",
+    ],
+  },
+  {
+    title: "AI / ML & LLMs",
+    icon: Sparkles,
+    items: [
+      "PyTorch",
+      "librosa",
       "NumPy",
       "Pandas",
       "Scikit-learn",
-      "Gen AI",
+      "Uncertainty Quantification",
+      "Generative AI",
+      "Agentic AI",
+      "Prompt Engineering",
+      "OpenAI API",
+      "Google Agents SDK",
+      "MCP",
+      "GitHub Copilot",
+      "Cursor",
+      "Claude",
     ],
   },
   {
@@ -565,6 +623,7 @@ const SKILL_GROUPS = [
       "Docker",
       "Kubernetes",
       "Git",
+      "GitHub Actions",
       "Jenkins",
       "ArgoCD",
       "JMeter",
@@ -582,7 +641,7 @@ function Skills() {
       <Reveal>
         <SectionHeader eyebrow="Skills" title="Technical toolkit" />
       </Reveal>
-      <div className="grid gap-5 lg:grid-cols-3">
+      <div className="grid gap-5 md:grid-cols-2">
         {SKILL_GROUPS.map((g, i) => (
           <Reveal key={g.title} delay={i * 90}>
             <div className="h-full rounded-xl border border-border bg-card p-6 transition-all duration-300 hover:-translate-y-1 hover:border-brand/40 hover:shadow-md">
@@ -614,15 +673,17 @@ const EDUCATION = [
     degree: "M.S. in Software Engineering",
     location: "San Jose, California",
     period: "Jan 2026 – Dec 2027 (Expected)",
-    extra:
-      "Relevant coursework: Data Structures & Algorithms (C++), Database Systems, Operating Systems, Distributed Systems, AI/ML.",
+    extra: "GPA: 3.7/4.0",
+    coursework:
+      "Artificial Intelligence, Machine Learning, Deep Learning, Intelligent Cloud Platforms, Distributed Systems, Data Structures & Algorithms (C++), Object-Oriented Programming, Enterprise Software Platforms, Database Systems, Operating Systems.",
   },
   {
     school: "JNTUA College of Engineering",
-    degree: "Bachelor's Degree",
+    degree: "Bachelor's Degree, Electronics & Communication Engineering",
     location: "India",
     period: "2017 – 2021",
-    extra: "",
+    extra: "GPA: 3.95/4.0 · Gold Medalist.",
+    coursework: "",
   },
 ];
 
@@ -647,6 +708,12 @@ function Education() {
                   <p className="mono mt-2 text-xs text-muted-foreground">{e.period}</p>
                   {e.extra && (
                     <p className="mt-3 text-sm text-muted-foreground">{e.extra}</p>
+                  )}
+                  {e.coursework && (
+                    <p className="mt-2 text-sm text-muted-foreground">
+                      <span className="font-semibold text-foreground">Relevant coursework:</span>{" "}
+                      {e.coursework}
+                    </p>
                   )}
                 </div>
               </div>
@@ -792,8 +859,29 @@ function Contact() {
             <SectionHeader
               eyebrow="Contact"
               title="Let's build something together"
-              description="I'm actively open to software engineering opportunities and would love to connect."
+              description="I'm open to AI/ML and Software Engineering roles and would love to connect."
             />
+            <ul className="mb-8 space-y-3">
+              {CONTACT_INFO.map((c) => (
+                <li key={c.label} className="flex items-center gap-3">
+                  <span className="grid h-10 w-10 shrink-0 place-items-center rounded-lg border border-border bg-card">
+                    <c.icon className="h-4 w-4 text-brand" />
+                  </span>
+                  <div className="min-w-0">
+                    <div className="mono text-xs uppercase tracking-widest text-muted-foreground">
+                      {c.label}
+                    </div>
+                    {c.href ? (
+                      <a href={c.href} className="break-words text-sm font-medium hover:text-brand">
+                        {c.value}
+                      </a>
+                    ) : (
+                      <span className="text-sm font-medium">{c.value}</span>
+                    )}
+                  </div>
+                </li>
+              ))}
+            </ul>
             <div className="flex flex-wrap gap-3">
               <a
                 href={SOCIAL.email}
